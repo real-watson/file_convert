@@ -1,7 +1,7 @@
 # file_convert
 file converter for xml, db,ini etc..
 
------------------------------------------------
+**********************************************
 o- xml format                                      
 <?xml version="1.0" encoding="UTF-8"?>             
 <note>
@@ -20,7 +20,7 @@ o- ini format
 name=watson
 age=12
 gender=female
------------------------------------------------
+**********************************************
 
 It talks about how to convert from* to to* via file format using C interface defined by myself.
 
