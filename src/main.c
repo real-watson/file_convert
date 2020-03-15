@@ -3,7 +3,7 @@
 #include <string.h>
 #include <assert.h>
 #include "sqlite3.h"
-#define VERSION "0.02"
+#define VERSION "v1.03-rc1"
 #define INI_FILE "../file/test.ini"
 #define DB_FILE "test.db"
 
