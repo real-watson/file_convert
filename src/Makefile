@@ -8,3 +8,4 @@ all:
 	$(CC) $(SRC) -o $(TARGET) $(CFLAGS) $(FLAGS)
 clean:
 	rm $(TARGET)
+	rm test.db
