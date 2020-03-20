@@ -7,32 +7,39 @@
 #define INI_FILE "../file/test.ini"
 #define DB_FILE "test.db"
 
-/*set line in sqlite*/
-static void set_line_sqlite(char *front, char *last, sqlite3 *db)
+/*
+*summary:set line in sqlite
+*input param: input string
+*input param: database struct
+*return: void
+*/
+void set_line_sqlite(const char *front, char *last, sqlite3 *db)
 {
 	int res = 0;
 	char cmd[128] = "" ;
 	char *errmsg = NULL;
 
-	last[strlen(last) - 1] = '\0';//deleted the end of string
+	last[strlen(last) - 1] = '\0';/*deleted endl*/
 	sprintf(cmd,"insert into student(front,last)values(\"%s\",\"%s\")",front,last);
 	res = sqlite3_exec(db,cmd,NULL,NULL,&errmsg);
 	if (res != SQLITE_OK)
 		return;
 }
 
-static int token_for_sqlite(char *line, sqlite3 *db)
+/*
+*summary:get token from string
+*input param: input each line
+*input param: database struct
+*return: 0 means not failed
+*/
+int token_for_sqlite(char *line, sqlite3 *db)
 {
 	char *front = NULL;
 	char *last  = NULL;
-	
 	assert(line);
-
 	front = strtok(line,"=");
-
-	if (front != NULL)
-	{	
-		last = strtok(NULL,"=");
+	if (front != NULL){	
+		last = strtok(NULL,"=");/*substring*/
 		if (last != NULL)
 			set_line_sqlite(front,last,db);
 		else
@@ -44,8 +51,12 @@ static int token_for_sqlite(char *line, sqlite3 *db)
 	return 0;
 }
 
-/*read ini and set in sqlite*/
-static int read_ini_for_sqlite(sqlite3 *db)
+/*
+*summary:read ini 
+*input param: database struct
+*return: 0 means not failed
+*/
+int read_ini_for_sqlite(sqlite3 *db)
 {
 	FILE *file = NULL;
 	char line[128] = "";
@@ -75,7 +86,7 @@ static int read_ini_for_sqlite(sqlite3 *db)
 	return 0;
 }
 
-
+/*MAIN function*/
 int main(int argc, char **argv)
 {
 	sqlite3 *db = NULL;
